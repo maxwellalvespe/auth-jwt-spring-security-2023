@@ -18,7 +18,7 @@ public class AutenticationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (isNull(username))
             throw new UsuarioInexistenteException("Usuario não localizado na base de dados!");
-        return new Usuario(1l,"maxwell", new BCryptPasswordEncoder().encode("123"));
+        return new Usuario(1l,username, new BCryptPasswordEncoder().encode("123"));
     }
 
 

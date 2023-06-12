@@ -11,17 +11,20 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 
-@Service @Slf4j
+@Service
+@Slf4j
 public class TokenService {
+
+
 
     @Value("${secret.key}")
     private String SECRET_KEY;
 
     public String generetedToken(Usuario usuario) {
-        var token =  JWT.create()
+        var token = JWT.create()
                 .withIssuer("GENERATED_TOKEN_JWT")
                 .withSubject(usuario.getNome())
-                .withClaim("id",usuario.getId())
+                .withClaim("id", usuario.getId())
                 .withExpiresAt(LocalDateTime.now().plusMinutes(10).toInstant(ZoneOffset.of("-03:00")))
                 .sign(getAlgotihmSecretKey(SECRET_KEY))
                 .toString();
@@ -29,6 +32,6 @@ public class TokenService {
     }
 
     private Algorithm getAlgotihmSecretKey(String secretKey) {
-        return Algorithm.HMAC256("secreta");
+        return Algorithm.HMAC256(secretKey);
     }
 }
