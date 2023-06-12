@@ -1,5 +1,6 @@
 package com.estudo.autenticacao.auth.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,17 +12,14 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 @Builder
 public class Usuario implements UserDetails {
 
+    private Long id;
     private String nome;
     private String senha;
 
-    public Usuario(String nome, String senha) {
-        this.nome = nome;
-        this.senha = senha;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -30,12 +28,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return getPassword();
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return getNome();
+        return nome;
     }
 
     @Override
