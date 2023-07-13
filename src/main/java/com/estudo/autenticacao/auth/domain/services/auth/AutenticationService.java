@@ -1,12 +1,14 @@
-package com.estudo.autenticacao.auth.services;
+package com.estudo.autenticacao.auth.domain.services.auth;
 
-import com.estudo.autenticacao.auth.model.Usuario;
-import com.estudo.autenticacao.auth.services.exception.UsuarioInexistenteException;
+import com.estudo.autenticacao.auth.domain.model.Usuario;
+import com.estudo.autenticacao.auth.domain.services.exception.UsuarioInexistenteException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
@@ -18,7 +20,7 @@ public class AutenticationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (isNull(username))
             throw new UsuarioInexistenteException("Usuario não localizado na base de dados!");
-        return new Usuario(1l,username, new BCryptPasswordEncoder().encode("123"));
+        return new Usuario(UUID.randomUUID(),username, new BCryptPasswordEncoder().encode("123"));
     }
 
 

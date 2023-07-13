@@ -1,4 +1,4 @@
-package com.estudo.autenticacao.auth.services.exception;
+package com.estudo.autenticacao.auth.domain.services.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

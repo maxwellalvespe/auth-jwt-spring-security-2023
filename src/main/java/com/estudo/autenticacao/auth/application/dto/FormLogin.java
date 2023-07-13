@@ -1,4 +1,4 @@
-package com.estudo.autenticacao.auth.resources.dto;
+package com.estudo.autenticacao.auth.application.dto;
 
 public record FormLogin (String user,String password){
 }

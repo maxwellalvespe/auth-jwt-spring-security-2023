@@ -1,5 +1,8 @@
-package com.estudo.autenticacao.auth.model;
+package com.estudo.autenticacao.auth.domain.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,19 +13,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
+@Entity
 public class Usuario implements UserDetails {
 
-    private Long id;
+    @Id
+    @GeneratedValue
+    private UUID id;
     private String nome;
     private String senha;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        //ROLE_+NAME
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

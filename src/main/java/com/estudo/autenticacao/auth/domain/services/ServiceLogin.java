@@ -1,8 +1,9 @@
-package com.estudo.autenticacao.auth.services;
+package com.estudo.autenticacao.auth.domain.services;
 
-import com.estudo.autenticacao.auth.model.Usuario;
-import com.estudo.autenticacao.auth.resources.dto.FormLogin;
-import com.estudo.autenticacao.auth.resources.dto.ResponseLogin;
+import com.estudo.autenticacao.auth.domain.model.Usuario;
+import com.estudo.autenticacao.auth.application.dto.FormLogin;
+import com.estudo.autenticacao.auth.application.dto.ResponseLogin;
+import com.estudo.autenticacao.auth.domain.services.auth.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +30,6 @@ public class ServiceLogin {
 
         var usuario = (Usuario) autenticated.getPrincipal();
 
-        var response = tokenService.generetedToken(usuario);
-        return new ResponseLogin(response);
+        return tokenService.generetedToken(usuario);
     }
 }
